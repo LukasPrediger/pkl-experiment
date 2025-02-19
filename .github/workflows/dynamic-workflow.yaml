@@ -1,0 +1,20 @@
+on:
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install pkl
+        uses: pkl-community/setup-pkl@v0
+        with:
+          pkl-version: 0.25.2
+
+      - name: Render workflow
+        run: pkl eval actions.pkl -f yaml -o .github/workflows/test.yaml
+
+  run:
+    uses: ./.github/workflows/test.yaml
