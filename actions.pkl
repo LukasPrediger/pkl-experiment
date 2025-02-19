@@ -1,0 +1,25 @@
+amends "package://pkg.pkl-lang.org/github.com/stefma/pkl-gha/com.github.action@0.0.4#/GitHubAction.pkl"
+
+name = "Test"
+
+on {
+  workflow_dispatch {}
+  workflow_call {}
+}
+
+jobs {
+  // Define your `jobs`. E.g.:
+  ["test"] {
+    `runs-on` = "ubuntu-latest"
+    steps {
+      new {
+        name = "Checkout"
+        uses = "actions/checkout@v4"
+      }
+      new {
+        name = "Run a one-line script"
+        run = "echo Hello, world!"
+      }
+    }
+  }
+}
